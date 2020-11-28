@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Header amb css -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Laforja App Template</title>
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+        <!-- Reomte font -->
+        <!--<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,900&display=swap" rel="stylesheet">-->
+        <!-- Local font -->
+        <link rel="stylesheet" href="/lib/font-roboto/roboto.css">
+        <link rel="stylesheet" href="/common/css/helpers.css">
+    </head>
+    <body>
+    <!-- Seccions de la pàgina -->
+    <div id="network-container"></div>
+
+    <!-- Contenidor per les notificacions -->
+    <div id="notifications-wrapper"></div>
+
+    <!-- Components de la pàgina -->
+    <div class="component" comp-include="/common/components/comp-notifications.html"></div>
+    <div class="component" comp-include="components/comp-network.html"></div>
+
+    <!-- Espai per a que el gestor de components hi carrgegui els components -->
+    <script id="components"></script>
+
+    <!-- Llibreries necessàries -->
+    <script src="/lib/jquery-1.11.0.min.js"></script>
+    <script src="/lib/dynamic-template.js"></script>
+    <script src="/lib/event-manager.js"></script>
+    <script src="/lib/components.js"></script>
+
+    <!-- Scripts pel funcionament de la pàgina -->
+    <script src="js/cortical-column.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/index.js"></script>
+
+    </body>
+</html>

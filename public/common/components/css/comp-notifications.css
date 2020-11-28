@@ -1,0 +1,70 @@
+/*****
+NOTIFICATIONS
+ */
+
+#notifications-wrapper {
+    position: absolute;
+    width: 410px;
+    bottom: 0px;
+    right: 400px;
+    /* right: calc(50vw - 205px); */
+    z-index: 2000;
+}
+
+#notifications-wrapper .notification{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    background: rgba(44, 204, 112, 1);
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    align-items: center;
+    color: #ffffff;
+    padding: 10px;
+}
+
+#notifications-wrapper .notification.error{
+    background-color: #F23C2F;
+}
+
+#notifications-wrapper .notification.warning{
+    background-color: #F29C13;
+}
+
+#notifications-wrapper .notification .fa.rotate180{
+    transform: rotate(180deg);
+}
+
+#notifications-wrapper .notification .status{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+#notifications-wrapper .notification .content{
+    flex:1;
+    margin: 0 20px;
+}
+
+#notifications-wrapper .notification .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+#notifications-wrapper .notification .description {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#notifications-wrapper .notification .close{
+    width: 18px;
+    height: 40px;
+    justify-content: right;
+    align-items: center;
+    font-size: 20px;
+}

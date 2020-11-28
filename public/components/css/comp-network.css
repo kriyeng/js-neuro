@@ -1,0 +1,75 @@
+#network-container{
+    width: 850px;
+    margin: auto;
+}
+
+#network-container .row{
+    display: flex;
+}
+
+#network-container .column{
+    width: 80px;
+    text-align: center;
+}
+
+#network-container .level{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#network-container .layers{
+    display: flex;
+    flex-direction: column;
+}
+
+#network-container .ouputs{
+    margin-top: 10px;
+}
+
+#network-container .input, #network-container .output, #network-container .layer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#network-container .state{
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
+    background-color: #FFF;
+    color: #000;
+    margin: 2px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
+}
+
+#network-container .state[state="0"]{
+    background-color: #CCC;
+}
+
+#network-container .state[state="1"]{
+    background-color: #3eadcc;
+}
+
+#network-container .state[state="2"]{
+    background-color: #66cc5b;
+}
+
+#network-container .state[state="3"]{
+    background-color: #cc4138;
+}
+
+#network-container .state[state="4"]{
+    background-color: #b14dcc;
+}
+
+#network-container .legend {
+    display: flex;
+}
+
+#network-container .legend .description{
+    display: flex;
+    align-items: center;
+}

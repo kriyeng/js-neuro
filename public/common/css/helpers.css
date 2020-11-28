@@ -1,0 +1,150 @@
+html{
+    width:100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width:100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    background-color: #ECECEC;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+
+    color: #808080;
+
+    overflow: hidden;
+    user-select: none;
+}
+
+/*****
+ANIMATIONS
+ */
+/***
+animated
+ */
+
+.animated {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated-mid {
+    -webkit-animation-duration: 0.35s;
+    animation-duration: 0.35s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated-fast {
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInDown{
+    0%{ opacity:0;}
+    15%{ opacity:0;  -webkit-transform:translate3d(0,-50px,0);transform:translate3d(0,-50px,0)}
+    to{ opacity:1;  -webkit-transform:none;transform:none}
+}
+.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}
+
+@keyframes fadeInTop{
+    0%{ opacity:0;}
+    15%{ opacity:0; -webkit-transform:translate3d(0,20px,0);transform:translate3d(0,20px,0)}
+    to{ opacity:1;  -webkit-transform:none;transform:none}
+}
+.fadeInTop{-webkit-animation-name:fadeInTop;animation-name:fadeInTop}
+
+@keyframes fadeOutTop{
+    0%{ opacity:1;}
+    15%{ opacity:1; -webkit-transform:none;transform:none}
+    to{ opacity:0;  -webkit-transform:translate3d(0,-50px,0);transform:translate3d(0,-50px,0) }
+}
+.fadeOutTop{-webkit-animation-name:fadeOutTop;animation-name:fadeOutTop}
+
+@keyframes fadeOutTopMidOpacity{
+    0%{ opacity:0.5;}
+    15%{ opacity:0.5; -webkit-transform:none;transform:none}
+    to{ opacity:0;  -webkit-transform:translate3d(0,-50px,0);transform:translate3d(0,-50px,0) }
+}
+.fadeOutTopMidOpacity{-webkit-animation-name:fadeOutTopMidOpacity;animation-name:fadeOutTopMidOpacity}
+
+@keyframes fadeInLeft{
+    0%{ opacity:0;}
+    15%{ opacity:0; -webkit-transform:translate3d(-30px,0,0);transform:translate3d(-30px,0,0)}
+    to{opacity:1; -webkit-transform:none;transform:none}
+}
+.fadeInLeft{-webkit-animation-name:fadeInLeft;animation-name:fadeInLeft}
+
+@keyframes fadeInRight{
+    0%{ opacity:0;}
+    15%{ opacity:0; -webkit-transform:translate3d(30px,0,0);transform:translate3d(30px,0,0)}
+    to{opacity:1; -webkit-transform:none;transform:none}
+}
+.fadeInRight{-webkit-animation-name:fadeInRight;animation-name:fadeInRight}
+
+@keyframes fadeOutLeft{
+    0%{ opacity:1;}
+    15%{ opacity:1; -webkit-transform:none;transform:none}
+    to{opacity:0; -webkit-transform:translate3d(-30px,0,0);transform:translate3d(-30px,0,0)}
+}
+.fadeOutLeft{-webkit-animation-name:fadeOutLeft;animation-name:fadeOutLeft}
+
+@keyframes fadeOutRight{
+    0%{ opacity:1;}
+    15%{ opacity:1; -webkit-transform:none;transform:none}
+    to{opacity:0; -webkit-transform:translate3d(+30px,0,0);transform:translate3d(+30px,0,0)}
+}
+.fadeOutRight{-webkit-animation-name:fadeOutRight;animation-name:fadeOutRight}
+
+@keyframes fadeOutDown{
+    0%{ opacity:1;}
+    15%{ opacity:1; -webkit-transform:none;transform:none}
+    to{ opacity:0; -webkit-transform:translate3d(0,-50px,0);transform:translate3d(0,-50px,0)}
+}
+.fadeOutDown{-webkit-animation-name:fadeOutDown;animation-name:fadeOutDown}
+
+
+@-webkit-keyframes bounceOutLeft {
+    20% {
+        opacity: 1;
+        -webkit-transform: translate3d(20px, 0, 0);
+        transform: translate3d(20px, 0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+}
+
+@keyframes bounceOutLeft {
+    20% {
+        opacity: 1;
+        -webkit-transform: translate3d(20px, 0, 0);
+        -ms-transform: translate3d(20px, 0, 0);
+        transform: translate3d(20px, 0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        -ms-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+}
+
+.bounceOutLeft {
+    -webkit-animation-name: bounceOutLeft;
+    animation-name: bounceOutLeft;
+}

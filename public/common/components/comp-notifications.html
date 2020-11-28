@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/common/components/css/comp-notifications.css">
+
+<script type="text/template" id="template-notification">
+    <div class="notification panel animated fadeInTop {{notification.status}}" >
+        <div class="status fa {{if:notification.status:==:success:fa-check:}} {{if:notification.status:==:error:fa-exclamation-triangle:}} {{if:notification.status:==:warning:fa-exclamation:}}"></div>
+        <div class="content">
+            <div class="title">{{notification.title}}</div>
+            <div class="description">{{notification.description}}</div>
+        </div>
+        <div>{{compute:Notifications.checkTimes(notification.times)}}</div>
+        <div class="close fa fa-times" onclick="Notifications.hideNotification(this)"></div>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    (function(window) {
+
+        'use strict';
+        var $container;
+        var notifications = [];
+        var show_time = 7000;
+
+        var Notifications = {
+            initialize : initialize,
+            checkTimes : checkTimes,
+            hideNotification : hideNotification
+        };
+
+        function initialize(container){
+            $container = $(container);
+            EventManager.subscribe('emit-notification', emitNotification);
+        }
+
+        function emitNotification(event){
+            if(event && event.status && event.title && event.description){
+                if(!checkNotifications(event)) {
+                    notifications.push(new Notification(event));
+                }
+            }
+        }
+
+        function hideNotification(element){
+            var $notification = $(element).closest('.notification');
+            if($notification.length){
+                $notification.addClass('hidden');
+            }
+        }
+
+        function checkNotifications(event){
+            for(var i=0, total = notifications.length; i<total; i++){
+                if(notifications[i].status === event.status && notifications[i].title === event.title){
+                    notifications[i].addTimes();
+                    return true;
+                }
+            }
+        }
+
+        function checkTimes(times){
+            return times > 0 ? '+' + times : '&nbsp;';
+        }
+
+        function removeNotification(options){
+            for(var i=0, total = notifications.length; i<total; i++){
+                if(notifications[i].status === options.status && notifications[i].title === options.title){
+                    notifications.splice(i,1);
+                    break;
+                }
+            }
+        }
+
+        var Notification = function(options){
+            this.status = options.status;
+            this.title = options.title;
+            this.description = options.description;
+            options.times = 0;
+            this.addTimes = addTimes;
+
+            var $notification = $(dt.render('template-notification', { notification : options }));
+            $container.append($notification);
+
+            if(!options.permanent) {
+                var notification_timer = setTimeout(hideNotification, show_time);
+            }
+
+            function hideNotification(){
+                if($notification.hasClass('hidden')){
+                    removeNotification(options);
+                    $notification.remove();
+                } else {
+                    Helpers.animate($notification, 'fadeOutTop', function () {
+                        removeNotification(options);
+                        $notification.remove();
+                    });
+                }
+            }
+
+            function addTimes(){
+                clearTimeout(notification_timer);
+                notification_timer = setTimeout(hideNotification, show_time);
+                options.times++;
+                dt.render('template-notification', { notification : options }, $notification[0]);
+            }
+
+        };
+
+        window.Notifications = Notifications;
+    })(window);
+    //# sourceURL=comp-notifications.js
+</script>

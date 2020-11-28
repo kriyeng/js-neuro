@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="components/css/comp-network.css" />
+<!-- The section template -->
+<script type="text/template" id="template-network">
+    <div class="static">
+        <div class="title">Regions</div>
+    </div>
+    <div class="table network">
+        <div class="regions">
+            <div class="level dt-iterate" dt-data="region in regions" dt-component="template-region-comp"></div>
+        </div>
+    </div>
+    <div class="static">
+        <div class="title">Sequence</div>
+        <div class="sequence"></div>
+    </div>
+</script>
+
+<script type="text/template" id="template-sequence">
+    <div class="item dt-iterate" dt-data="item in sequence">
+        <div class="index">{{item.index}}</div>
+        <div class="value">{{item.value}}</div>
+    </div>
+</script>
+
+<script type="text/template" id="template-region-comp">
+    <div class="region">
+        <div class="title">Region {{region.name}}</div>
+        <div class="row columns">
+            <div class="column dt-iterate" dt-data="neuron in region.neurons" dt-component="template-neuron-comp"></div>
+        </div>
+        <div class="region-output" id="region-{{region.id}}">
+            <div class="title">Value: </div>
+            <div class="value"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="template-neuron-comp">
+    <div class="neuron">
+        <div class="title">{{neuron.position}}</div>
+        <div class="state" id="{{region.name}}-{{neuron.position}}" state="0">{{neuron.state}}</div>
+    </div>
+</script>
+
+<script>
+    (function(window) {
+        "use strict";
+
+        var $container = null;
+        var counter = 0;
+        var times_per_counter = 1;
+        var sub_counter = times_per_counter;
+        var max_count = 16;
+        var random_number = 0;
+
+        var sequence = [];
+
+        // Define the public methods and properties
+        var Comp_network = {
+            initialize : initialize,
+            count : count
+        };
+
+        function initialize($main_container){
+            $container = $main_container;
+            $container.html(dt.render('template-network', { regions : Network.getRegions() }));
+
+            EventManager.subscribe('neuron-state-changed', setNeuronState);
+
+            //count();
+        }
+
+        function setNeuronState(data){
+            var $state = $container.find('#' + data.id);
+            $state.attr('state', data.state);
+
+            var $output = $container.find('#region-' + data.region);
+            var value = parseInt(Network.getOuputs({ region : data.region }).join(""), 2);
+            $output.find('.value').html(value);
+        }
+
+        function count(until){
+            if(until) max_count = until;
+
+            sub_counter++;
+            if (sub_counter >= times_per_counter){
+                counter++;
+                if(counter >= max_count ) return console.log("Finished counting");
+                sub_counter=0;
+                random_number = getRandom(16);
+                sequence.push({ index : counter, value : random_number });
+                renderSequence();
+
+                console.log("Iteration " + counter + " Value " + random_number);
+            }
+
+            Network.input({ region : "I", input : (15-counter).toString(2).padStart(4,'0') });
+            Network.input({ region : "T", input : (counter).toString(2).padStart(4,'0') });
+            Network.input({ region : "V", input : (random_number).toString(2).padStart(4,'0'), training : true });
+
+            setTimeout(function(){
+                count()
+            }, 700);
+        }
+
+        function renderSequence(){
+            $container.find('.sequence').html(dt.render('template-sequence', { sequence : sequence }));
+        }
+
+        function getRandom(max){
+            return Math.ceil(Math.random() * max);
+        }
+
+        window.Comp_network = Comp_network;
+    })(window);
+
+    //# sourceURL=comp-network.js
+</script>

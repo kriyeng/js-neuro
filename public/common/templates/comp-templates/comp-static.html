@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="components/css/comp-static.css" />
+<!-- The section template -->
+<script type="text/template" id="template-static">
+    <div class="static">
+        <div class="title"></div>
+        <div class="content"></div>
+    </div>
+</script>
+
+<script>
+    (function(window) {
+        "use strict";
+
+        var $container = null;
+
+        // Define the public methods and properties
+        var Static = {
+            initialize : initialize
+        };
+
+        function initialize($main_container){
+            $container = $main_container;
+            $container.html(dt.render('template-static'));
+        }
+
+        window.Static = Static;
+    })(window);
+
+    //# sourceURL=comp-static.js
+</script>

@@ -1,0 +1,18 @@
+#tools{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin: 30px auto;
+}
+
+#tools .test{
+    display: flex;
+}
+
+#tools .button{
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid #FFF;
+    background-color: #3eadcc;
+    color: #FFF;
+}
